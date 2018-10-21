@@ -4,8 +4,8 @@ import com.example.labspringbootmockito.Controller.Bank;
 import com.example.labspringbootmockito.Controller.Calculator;
 import com.example.labspringbootmockito.Service.BankService;
 import com.example.labspringbootmockito.Service.CalculatorService;
+import org.hamcrest.Matchers;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -65,10 +67,12 @@ public class LabSpringbootMockitoApplicationTests {
 		double balance = 2000.23;
 
 		//act
-		when(bankService.Deposit(account, amount)).thenReturn(balance);
+//		when(bankService.Deposit(account, amount)).thenReturn(balance);
+        when(bankService.Deposit(anyLong(), anyDouble())).thenReturn(balance);
 
 		//assert
 		assertThat(bank.Deposit(account, amount), is(equalTo(balance)));
-		verify(bankService).Deposit(account, amount);
+//		verify(bankService).Deposit(account, amount);
+        verify(bankService).Deposit(anyLong(), anyDouble());
 	}
 }
