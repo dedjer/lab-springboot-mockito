@@ -38,7 +38,9 @@ public class LabSpringbootMockitoApplicationTests {
 	@Before
 	public void setUp() throws Exception {
 		// Mock without using annotations
-		bankService = mock(BankService.class);
+        bankService = mock(BankService.class);
+
+		// Inject Mock
 		bank = new Bank(bankService);
 	}
 
